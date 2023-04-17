@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcyuj626lo6cb"]
+
+[ext_resource type="Script" path="res://Scenes/ServiceEntryButton/sevice_entry_button.gd" id="1_vd5fw"]
+
+[node name="SeviceEntryButton" type="Button"]
+offset_right = 212.0
+offset_bottom = 50.0
+script = ExtResource("1_vd5fw")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 5.0
+offset_right = 158.0
+offset_bottom = 50.0
+vertical_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+max_lines_visible = 2
+structured_text_bidi_override = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 158.0
+offset_right = 208.0
+offset_bottom = 50.0
+mouse_filter = 2
+expand_mode = 2
+stretch_mode = 6
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,424 @@
+[gd_scene load_steps=9 format=3 uid="uid://dqhg2bea23u8r"]
+
+[ext_resource type="Script" path="res://Scenes/Registration2/registration_scene2.gd" id="1_jmpjq"]
+[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://default_pfp.webp" id="2_28di1"]
+[ext_resource type="StyleBox" uid="uid://dyhjt06puyome" path="res://Styles/ButtonPressedGreen/button_pressed_green.tres" id="3_urgul"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5yg1n"]
+
+[sub_resource type="Animation" id="Animation_08mjx"]
+resource_name = "Invalid_password_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Password:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Password/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.678431, 0, 0, 1), Color(0.678431, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qn0ur"]
+resource_name = "Invalid_user_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Login/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.678431, 0, 0, 1), Color(0.678431, 0, 0, 1), Color(0.678431, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Login:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3mda7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Password:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Password/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Login/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.678431, 0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Login:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vp0oh"]
+_data = {
+"Invalid_password_animation": SubResource("Animation_08mjx"),
+"Invalid_user_animation": SubResource("Animation_qn0ur"),
+"RESET": SubResource("Animation_3mda7")
+}
+
+[node name="RegistrationScene2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jmpjq")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -73.0
+offset_right = 172.0
+offset_bottom = -23.0
+theme_override_font_sizes/font_size = 20
+text = "Back"
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = 50.0
+offset_right = -2.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Simple Password Manager"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Greeting" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.001
+anchor_right = 1.0
+offset_left = -0.152
+offset_top = 125.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Hello, username, please enter login and password to create local account"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PFPHead" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.0
+offset_top = 203.0
+offset_right = 21.0
+offset_bottom = 258.0
+grow_horizontal = 2
+
+[node name="PFPBody" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.0
+offset_top = 258.0
+offset_right = 36.0
+offset_bottom = 277.0
+grow_horizontal = 2
+
+[node name="PFPBackground" type="TextureRect" parent="."]
+self_modulate = Color(0.207843, 0.207843, 0.207843, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -49.0
+offset_top = 184.0
+offset_right = 51.0
+offset_bottom = 284.0
+grow_horizontal = 2
+texture = ExtResource("2_28di1")
+expand_mode = 1
+
+[node name="ChangeColorButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 80.0
+offset_top = 227.0
+offset_right = 105.0
+offset_bottom = 252.0
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+text = "🎨 "
+text_overrun_behavior = 1
+
+[node name="ColorPicker" type="ColorPicker" parent="ChangeColorButton"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 708.0
+offset_top = 240.5
+offset_right = 670.0
+offset_bottom = 563.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+alignment = 1
+edit_alpha = false
+picker_shape = 2
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="ResetColorButton" type="Button" parent="ChangeColorButton"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 8.5
+offset_top = 30.0
+offset_right = 43.5
+offset_bottom = 83.0
+rotation = -1.5708
+focus_mode = 1
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5yg1n")
+text = "↺"
+flat = true
+
+[node name="Login" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 316.0
+offset_right = 137.0
+offset_bottom = 358.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Enter your login here"
+alignment = 1
+max_length = 25
+expand_to_text_length = true
+
+[node name="Label" type="Label" parent="Login"]
+modulate = Color(0.678431, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_right = 66.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "User already exists"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Password1" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -163.0
+offset_top = 389.0
+offset_right = 165.0
+offset_bottom = 431.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Enter your password here"
+alignment = 1
+max_length = 25
+secret = true
+expand_to_text_length = true
+
+[node name="ChangeVisibilityButton" type="Button" parent="Password1"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -13.0
+offset_right = 34.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+theme_override_styles/pressed = ExtResource("3_urgul")
+toggle_mode = true
+text = "👁 "
+text_overrun_behavior = 1
+
+[node name="Label" type="Label" parent="Password1"]
+modulate = Color(1, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_right = 66.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Invalid password"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Password" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -163.0
+offset_top = 461.0
+offset_right = 165.0
+offset_bottom = 503.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Repeat your password"
+alignment = 1
+max_length = 25
+secret = true
+expand_to_text_length = true
+
+[node name="Label" type="Label" parent="Password"]
+modulate = Color(1, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_right = 66.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Passwords do not match"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vp0oh")
+}
+
+[node name="CreateAccountButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.5
+offset_top = 549.0
+offset_right = 58.5
+offset_bottom = 592.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Create account"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="focus_exited" from="ChangeColorButton" to="." method="_on_change_color_button_focus_exited"]
+[connection signal="pressed" from="ChangeColorButton" to="." method="_on_change_color_button_pressed"]
+[connection signal="color_changed" from="ChangeColorButton/ColorPicker" to="." method="_on_color_picker_color_changed"]
+[connection signal="pressed" from="ChangeColorButton/ResetColorButton" to="." method="_on_reset_color_button_pressed"]
+[connection signal="text_changed" from="Login" to="." method="_on_password_text_changed"]
+[connection signal="text_changed" from="Password1" to="." method="_on_password_text_changed"]
+[connection signal="focus_exited" from="Password1/ChangeVisibilityButton" to="." method="_on_change_visibility_button_focus_exited"]
+[connection signal="pressed" from="Password1/ChangeVisibilityButton" to="." method="_on_change_visibility_button_pressed"]
+[connection signal="text_changed" from="Password" to="." method="_on_password_text_changed"]
+[connection signal="pressed" from="CreateAccountButton" to="." method="_on_login_button_pressed"]
