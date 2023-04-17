@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://7qv2ohb4qodi"]
+[gd_scene load_steps=10 format=3 uid="uid://c3safv2wtnqif"]
 
 [ext_resource type="StyleBox" uid="uid://dyhjt06puyome" path="res://Styles/ButtonPressedGreen/button_pressed_green.tres" id="1_05wrt"]
 [ext_resource type="Script" path="res://Scenes/Auth/auth_scene.gd" id="1_mu7kw"]
-[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://default_pfp.webp" id="3_d5qq1"]
+[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://Assets/default_pfp.webp" id="2_vfbtu"]
 
 [sub_resource type="Animation" id="Animation_l3hkt"]
 resource_name = "Invalid_login_animation"
@@ -204,7 +204,7 @@ offset_top = 184.0
 offset_right = 51.0
 offset_bottom = 284.0
 grow_horizontal = 2
-texture = ExtResource("3_d5qq1")
+texture = ExtResource("2_vfbtu")
 expand_mode = 1
 
 [node name="Login" type="LineEdit" parent="."]

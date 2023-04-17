@@ -46,6 +46,8 @@ func _on_login_button_pressed():
 		else:
 			reject_login()
 			return
+		var first_start = FileAccess.open(OS.get_user_data_dir()+"/first_start.cfg", FileAccess.WRITE)
+		first_start.close()
 		get_tree().change_scene_to_file("res://Scenes/Auth/auth_scene.tscn")
 	else:
 		reject_password()

@@ -139,10 +139,16 @@ func _on_password_line_deleted(id):
 	$ScrollContainer/PasswordContent.custom_minimum_size.y-=70+margin
 	for i in password_data_array:
 		if(i[0]==id):
-			password_data_array.remove_at(password_data_array.find(i))
+			all_passwords.remove_at(password_data_array.find(i))
+	password_data_array.clear()
+	#print(all_passwords)
 	for pass_line in all_passwords:
 		if(pass_line.id>id):
+			pass_line.id-=1
 			pass_line.position.y-=70+margin
+		var temp_pass_data_array = [pass_line.id, pass_line.header.text, pass_line.login.text, pass_line.password.text, pass_line.description.text]
+		password_data_array.append(temp_pass_data_array)
+	emit_signal("submit_changes", current_service_id, $Description.text, password_data_array, web_address, !$HideDescription.button_pressed, !$HidePasswords.button_pressed)
 
 
 func _on_content_services_service_chosen(id, service_name, description, website, passwords_array, desc_visible, passwords_visible):
@@ -178,7 +184,6 @@ func _on_content_services_service_chosen(id, service_name, description, website,
 	for i in passwords_array:
 		var new_pass_instance = create_new_password(i[0])
 		lines_amount+=1
-		print(i[4])
 		new_pass_instance.description_text = i[4]
 		new_pass_instance.password_text = i[3]
 		new_pass_instance.login_text = i[2]

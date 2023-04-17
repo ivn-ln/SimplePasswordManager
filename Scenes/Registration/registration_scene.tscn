@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc7npiu4hfyop"]
+[gd_scene load_steps=9 format=3 uid="uid://i2fs47f3ferb"]
 
 [ext_resource type="Script" path="res://Scenes/Registration/registration_scene.gd" id="1_y3yvx"]
-[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://default_pfp.webp" id="2_gomt0"]
+[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://Assets/default_pfp.webp" id="2_x3gob"]
 [ext_resource type="StyleBox" uid="uid://dyhjt06puyome" path="res://Styles/ButtonPressedGreen/button_pressed_green.tres" id="3_x6ifc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5yg1n"]
@@ -200,7 +200,7 @@ offset_top = 184.0
 offset_right = 51.0
 offset_bottom = 284.0
 grow_horizontal = 2
-texture = ExtResource("2_gomt0")
+texture = ExtResource("2_x3gob")
 expand_mode = 1
 
 [node name="ChangeColorButton" type="Button" parent="."]
@@ -218,16 +218,17 @@ text = "🎨 "
 text_overrun_behavior = 1
 
 [node name="ColorPicker" type="ColorPicker" parent="ChangeColorButton"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 611.5
-offset_top = 190.5
-offset_right = 629.5
-offset_bottom = 513.5
+offset_left = 1011.5
+offset_top = 390.5
+offset_right = 829.5
+offset_bottom = 713.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -241,6 +242,7 @@ hex_visible = false
 presets_visible = false
 
 [node name="ResetColorButton" type="Button" parent="ChangeColorButton"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5

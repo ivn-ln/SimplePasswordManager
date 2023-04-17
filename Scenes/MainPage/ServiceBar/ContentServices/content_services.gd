@@ -19,15 +19,18 @@ signal deletion_success
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var dir = DirAccess
-	var config_dir = "res://Services"
+	var config_dir = Globals.current_user_folder+"/Services/"
+	var password = Globals.current_password
 	dir = dir.open(config_dir)
+	if(!DirAccess.dir_exists_absolute(config_dir)):
+		return
 	var dir_array = dir.get_directories()
 	for curr_dir in dir_array:
 		var config = FileAccess.open(config_dir+"/"+curr_dir+"/"+curr_dir+"_config.cfg",FileAccess.READ)
 		if(config==null):
 			continue
 		var config_vars = config.get_var()
-		print(config_vars)
+		#print(config_vars)
 		var service_name = config_vars[0]
 		var id = config_vars[1]
 		var description = config_vars[2]
@@ -65,12 +68,11 @@ func create_service(_service_name, _id, _config, _folder, _website, _description
 	new_service_button_instance.size = Vector2(212, 50)
 	new_service_button_instance.position.y = new_service_button_instance.size.y* _id
 	new_service_button_instance.id = _id
-	print(_website)
 	new_service_button_instance.website = _website
 	new_service_button_instance.description = _description
 	new_service_button_instance.desc_visible = _is_desc_visible
 	new_service_button_instance.passwords_visible = _is_passwords_visible
-	new_service_button_instance.password_cfg_location = "res://services/"+_service_name+"/"+_service_name+"_passwords.cfg"
+	new_service_button_instance.password_cfg_location = Globals.current_user_folder+"/services/"+_service_name+"/"+_service_name+"_passwords.cfg"
 	add_child(new_service_button_instance)
 	lines_amount+=1
 
@@ -127,6 +129,7 @@ func _on_service_content_delete_service(id, no_shift=false):
 	for service in services_array:
 		if(service.name.contains("SeviceEntryButton")):
 			if(id<service.id):
+				print("I am service #", id)
 				if(!no_shift):
 					service.position.y-=$NewServiceButton.size.y 
 					service.id-=1

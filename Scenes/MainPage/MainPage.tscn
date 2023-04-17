@@ -1,12 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://d3t7ut5olcgt"]
+[gd_scene load_steps=20 format=3 uid="uid://clhj2iv4c8klh"]
 
 [ext_resource type="PackedScene" uid="uid://ei6wtkmmx5r" path="res://Scenes/MainPage/ServiceBar/ContentServices/content_services.tscn" id="1_h5xei"]
 [ext_resource type="Script" path="res://Scenes/MainPage/MainPage.gd" id="1_iexfr"]
 [ext_resource type="PackedScene" uid="uid://dxh38ib8dttaw" path="res://Scenes/ServiceContent/service_content.tscn" id="2_llvt2"]
 [ext_resource type="PackedScene" uid="uid://b3sxm2a4x4vim" path="res://Scenes/ServiceBar/service_bar.tscn" id="2_ptgjk"]
 [ext_resource type="Script" path="res://Scenes/MainPage/UserBanner.gd" id="3_eer7l"]
-[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://default_pfp.webp" id="4_yvx8n"]
 [ext_resource type="StyleBox" uid="uid://e2mc8svi60jm" path="res://Styles/UserBanner/NormalStyle.tres" id="5_demmf"]
+[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://Assets/default_pfp.webp" id="8_6km2q"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="8_fsuqi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djmo2"]
@@ -392,7 +392,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="Panel" parent="Content"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -466,7 +465,7 @@ offset_left = 24.0
 offset_top = 6.0
 offset_right = 54.0
 offset_bottom = 44.0
-tooltip_text = "Profile managment"
+tooltip_text = "Profile"
 focus_mode = 0
 theme_override_styles/normal = ExtResource("5_demmf")
 theme_override_styles/hover = ExtResource("5_demmf")
@@ -532,7 +531,7 @@ offset_left = -14.9643
 offset_top = -38.9011
 offset_right = 15.0357
 offset_bottom = -8.90107
-texture = ExtResource("4_yvx8n")
+texture = ExtResource("8_6km2q")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
@@ -554,9 +553,9 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 126.0
-offset_top = 306.0
+offset_top = 397.0
 offset_right = -123.0
-offset_bottom = 370.0
+offset_bottom = 461.0
 grow_horizontal = 2
 tooltip_text = "Log out from your account"
 theme_override_font_sizes/font_size = 24
@@ -567,12 +566,12 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 126.0
-offset_top = 397.0
+offset_top = 306.0
 offset_right = -123.0
-offset_bottom = 461.0
+offset_bottom = 370.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
-text = "Delete account"
+text = "Settings"
 
 [node name="Button3" type="Button" parent="UserPage/Content"]
 layout_mode = 1
@@ -639,7 +638,7 @@ offset_right = 100.0
 offset_bottom = 215.0
 grow_horizontal = 2
 mouse_filter = 2
-texture = ExtResource("4_yvx8n")
+texture = ExtResource("8_6km2q")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="UserPage/User"]

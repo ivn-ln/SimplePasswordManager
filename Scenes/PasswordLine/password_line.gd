@@ -50,7 +50,7 @@ func _ready():
 			_on_edit_password_pressed()
 			$EditPassword.button_pressed = true
 			$PasswordHeader.text="Password " + str(id+1)
-			emit_signal("password_data_changed", id, header.text, login.text, password.text)
+			emit_signal("password_data_changed", id, header.text, login.text, password.text, description.text)
 	else:
 		$PasswordHeader.text = "Example password"
 		$PasswordDescription.text = "This is a password's field example description"
@@ -64,8 +64,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	size.x = get_parent().custom_minimum_size.x
-	if(get_parent().custom_minimum_size.x==648):
-		size.x = get_parent().get_parent().get_parent().size.x-20
+	if(DisplayServer.window_get_size().x>648):
+		size.x = DisplayServer.window_get_size().x-20
 	if(check_selection):
 		if($Login.has_focus()==false and $Password.has_focus()==false and $EditPassword.has_focus() == false):
 				if($EditPassword.button_pressed):

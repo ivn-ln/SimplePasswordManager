@@ -53,13 +53,14 @@ func _process(delta):
 
 func config_save():
 	var service_config = FileAccess
-	service_config = service_config.open("res://services/"+service_name+"/"+service_name+"_config.cfg", FileAccess.WRITE)
+	service_config = service_config.open(cfg_location, FileAccess.WRITE)
 	var storable_vars = [service_name, id, description, website, desc_visible, passwords_visible]
 	service_config.store_var(storable_vars)
 	service_config.close()
 	var password_config = FileAccess
-	password_config = password_config.open("res://services/"+service_name+"/"+service_name+"_passwords.cfg", FileAccess.WRITE)
+	password_config = password_config.open(password_cfg_location, FileAccess.WRITE)
 	password_config.store_var(passwords_array)
+	password_config.close()
 
 func config_delete():
 	DirAccess.remove_absolute(cfg_location)

@@ -2,6 +2,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	RenderingServer.set_default_clear_color(Color.DIM_GRAY)
 	DisplayServer.window_set_min_size(Vector2i(576, 648))
 	$Greeting.text ="Hello, " + OS.get_environment("USERNAME") + ", please enter your login and password to proceed"
 	if(FileAccess.file_exists(OS.get_user_data_dir()+"/default_settings.cfg")):
@@ -52,6 +53,7 @@ func _on_login_button_pressed():
 		Globals.current_user = user_login
 		Globals.current_color = user_color
 		Globals.current_password = inputed_password
+		Globals.current_user_folder = OS.get_user_data_dir() + "/" + user_login
 	else:
 		password_reject()
 

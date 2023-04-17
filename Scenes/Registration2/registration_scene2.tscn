@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqhg2bea23u8r"]
+[gd_scene load_steps=9 format=3 uid="uid://b4npfn7r7t2fc"]
 
 [ext_resource type="Script" path="res://Scenes/Registration2/registration_scene2.gd" id="1_jmpjq"]
-[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://default_pfp.webp" id="2_28di1"]
+[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://Assets/default_pfp.webp" id="2_tfht6"]
 [ext_resource type="StyleBox" uid="uid://dyhjt06puyome" path="res://Styles/ButtonPressedGreen/button_pressed_green.tres" id="3_urgul"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5yg1n"]
@@ -212,7 +212,7 @@ offset_top = 184.0
 offset_right = 51.0
 offset_bottom = 284.0
 grow_horizontal = 2
-texture = ExtResource("2_28di1")
+texture = ExtResource("2_tfht6")
 expand_mode = 1
 
 [node name="ChangeColorButton" type="Button" parent="."]
@@ -237,10 +237,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 708.0
-offset_top = 240.5
-offset_right = 670.0
-offset_bottom = 563.5
+offset_left = 1012.0
+offset_top = 392.5
+offset_right = 822.0
+offset_bottom = 715.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)

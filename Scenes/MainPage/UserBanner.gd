@@ -22,6 +22,7 @@ func _ready():
 	$"../User/UserHead".color = Globals.current_color
 	$"../User/UserBody".color = Globals.current_color
 	$"../User/Label".text = Globals.current_user
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,8 +60,7 @@ func _on_button_3_pressed():
 
 
 func _on_button_2_pressed():
-	$"../NativeConfirmationDialog".dialog_text = "Are you sure you want to delete account " + Globals.current_user +"?"
-	$"../NativeConfirmationDialog".show()
+	get_tree().change_scene_to_file("res://Scenes/Settings/settings_page.tscn")
 
 
 func _on_native_confirmation_dialog_confirmed():

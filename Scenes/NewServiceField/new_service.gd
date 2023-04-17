@@ -5,6 +5,8 @@ var start_service_name = ""
 var icon
 var id
 
+var default_service_folder = Globals.current_user_folder+"/Services/"
+
 @onready var service_entry_button = preload("res://Scenes/ServiceEntryButton/sevice_entry_button.tscn")
 
 signal end(success, id)
@@ -67,12 +69,14 @@ func _on_discard_logo_button_pressed():
 
 
 func _on_confirm_button_pressed():
+	if(!DirAccess.dir_exists_absolute(default_service_folder)):
+		DirAccess.make_dir_absolute(default_service_folder)
 	var dir = DirAccess
 	if(service_name==start_service_name):
 		emit_signal("end", false, id)
 		queue_free()
 		return
-	dir = dir.open("res://services")
+	dir = dir.open(default_service_folder)
 	if(dir.dir_exists(service_name)==true):
 		_on_discard_button_pressed()
 		$NativeNotification.send()
@@ -84,17 +88,20 @@ func _on_confirm_button_pressed():
 	dir.make_dir(service_name)
 	dir.open(service_name)
 	var service_config = FileAccess
-	var service_config_path = "res://services/"+service_name+"/"+service_name+"_config.cfg"
-	var service_config_folder = "res://services/"+service_name
+	var service_config_path = default_service_folder+service_name+"/"+service_name+"_config.cfg"
+	var service_config_folder =default_service_folder+service_name
+	if(!DirAccess.dir_exists_absolute(service_config_folder)):
+		DirAccess.make_dir_absolute(service_config_folder)
+	print(service_config_path)
 	service_config = service_config.open(service_config_path, FileAccess.WRITE)
 	var storable_vars = [service_name, id,"", "", true, true]
 	service_config.store_var(storable_vars)
 	var new_service_button_instance = service_entry_button.instantiate()
 	new_service_button_instance.service_name = service_name
 	new_service_button_instance.id = id
-	new_service_button_instance.cfg_folder = "res://services/"+service_name
+	new_service_button_instance.cfg_folder = default_service_folder+service_name
 	new_service_button_instance.cfg_location = service_config_path
-	new_service_button_instance.password_cfg_location = "res://services/"+service_name+"/"+service_name+"_passwords.cfg"
+	new_service_button_instance.password_cfg_location = default_service_folder+service_name+"/"+service_name+"_passwords.cfg"
 	new_service_button_instance.is_editor_created = true
 	new_service_button_instance.service_icon = icon
 	#new_service_button_instance.size = size
