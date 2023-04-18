@@ -1,0 +1,678 @@
+[gd_scene load_steps=20 format=3 uid="uid://clhj2iv4c8klh"]
+
+[ext_resource type="PackedScene" uid="uid://ei6wtkmmx5r" path="res://Scenes/MainPage/ServiceBar/ContentServices/content_services.tscn" id="1_h5xei"]
+[ext_resource type="Script" path="res://Scenes/MainPage/MainPage.gd" id="1_iexfr"]
+[ext_resource type="PackedScene" uid="uid://dxh38ib8dttaw" path="res://Scenes/ServiceContent/service_content.tscn" id="2_llvt2"]
+[ext_resource type="PackedScene" uid="uid://b3sxm2a4x4vim" path="res://Scenes/ServiceBar/service_bar.tscn" id="2_ptgjk"]
+[ext_resource type="Script" path="res://Scenes/MainPage/UserBanner.gd" id="3_eer7l"]
+[ext_resource type="StyleBox" uid="uid://e2mc8svi60jm" path="res://Styles/UserBanner/NormalStyle.tres" id="5_demmf"]
+[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://Assets/default_pfp.webp" id="8_6km2q"]
+[ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="8_fsuqi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djmo2"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_msjbf"]
+frequency = 1.0
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_en58j"]
+seamless = true
+noise = SubResource("FastNoiseLite_msjbf")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mu0a5"]
+noise_type = 3
+fractal_type = 3
+fractal_octaves = 1
+fractal_ping_pong_strength = 10.0
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_85342"]
+seamless = true
+noise = SubResource("FastNoiseLite_mu0a5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f5krc"]
+shader = ExtResource("8_fsuqi")
+shader_parameter/speed = Vector2(0.01, 0.01)
+shader_parameter/distort_scale = 0.0
+shader_parameter/noise = SubResource("NoiseTexture2D_en58j")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_85342")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eux1t"]
+content_margin_top = 7.0
+content_margin_bottom = 15.0
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.760784, 0.411765, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+shadow_size = 1
+
+[sub_resource type="Animation" id="Animation_gj6h1"]
+resource_name = "Blur_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Content:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("User/DefaultPfp:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("User/UserHead:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("User/UserBody:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("User/Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panel:material:shader_parameter/distort_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Content:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Panel:mouse_filter")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_0sij8"]
+resource_name = "Blur_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Content:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("User/DefaultPfp:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("User/UserHead:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("User/UserBody:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("User/Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panel:material:shader_parameter/distort_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Content:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Panel:mouse_filter")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4peat"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Content:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("User/DefaultPfp:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("User/UserHead:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("User/UserBody:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("User/Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panel:material:shader_parameter/distort_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Content:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Panel:mouse_filter")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wduih"]
+_data = {
+"Blur_in": SubResource("Animation_gj6h1"),
+"Blur_out": SubResource("Animation_0sij8"),
+"RESET": SubResource("Animation_4peat")
+}
+
+[node name="MainPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iexfr")
+
+[node name="Background" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -983.0
+offset_top = -618.0
+offset_right = 1191.0
+offset_bottom = 674.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_djmo2")
+
+[node name="Content" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Content"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.998
+offset_top = 50.0
+offset_right = 220.0
+offset_bottom = 1.29596
+follow_focus = true
+vertical_scroll_mode = 2
+
+[node name="ServicesBar" type="Control" parent="Content/ScrollContainer"]
+custom_minimum_size = Vector2(208, 598)
+layout_mode = 2
+
+[node name="ContentServices" parent="Content/ScrollContainer/ServicesBar" instance=ExtResource("1_h5xei")]
+layout_mode = 1
+offset_top = 0.0
+
+[node name="ServiceBar" parent="Content" instance=ExtResource("2_ptgjk")]
+layout_mode = 1
+anchors_preset = -1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ServiceContent" parent="Control" instance=ExtResource("2_llvt2")]
+layout_mode = 1
+offset_left = 0.0
+offset_bottom = 0.0
+mouse_filter = 2
+
+[node name="UserPage" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="UserPage"]
+self_modulate = Color(1, 1, 1, 0.556863)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_f5krc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="UserBanner" type="Button" parent="UserPage"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 24.0
+offset_top = 6.0
+offset_right = 54.0
+offset_bottom = 44.0
+tooltip_text = "Profile"
+focus_mode = 0
+theme_override_styles/normal = ExtResource("5_demmf")
+theme_override_styles/hover = ExtResource("5_demmf")
+theme_override_styles/pressed = ExtResource("5_demmf")
+theme_override_styles/disabled = ExtResource("5_demmf")
+theme_override_styles/focus = SubResource("StyleBoxFlat_eux1t")
+toggle_mode = true
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_eer7l")
+animation_speed = 2.0
+metadata/_edit_group_ = true
+
+[node name="UserHead" type="ColorRect" parent="UserPage/UserBanner"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -34.0
+offset_right = 6.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="UserBody" type="ColorRect" parent="UserPage/UserBanner"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -29.0
+offset_right = 10.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="UserBody2" type="ColorRect" parent="UserPage/UserBanner"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.004
+anchor_right = 0.5
+anchor_bottom = 1.004
+offset_top = -22.2
+offset_right = 15.0
+offset_bottom = -7.20002
+rotation = 0.785398
+
+[node name="DefaultPfp" type="TextureRect" parent="UserPage/UserBanner"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -14.9643
+offset_top = -38.9011
+offset_right = 15.0357
+offset_bottom = -8.90107
+texture = ExtResource("8_6km2q")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Content" type="Control" parent="UserPage"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -259.0
+offset_right = 259.0
+offset_bottom = 648.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="UserPage/Content"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 126.0
+offset_top = 397.0
+offset_right = -123.0
+offset_bottom = 461.0
+grow_horizontal = 2
+tooltip_text = "Log out from your account"
+theme_override_font_sizes/font_size = 24
+text = "Log out"
+
+[node name="Button2" type="Button" parent="UserPage/Content"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 126.0
+offset_top = 306.0
+offset_right = -123.0
+offset_bottom = 370.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Settings"
+
+[node name="Button3" type="Button" parent="UserPage/Content"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 126.0
+offset_top = 489.0
+offset_right = -123.0
+offset_bottom = 553.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Back"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UserPage"]
+libraries = {
+"": SubResource("AnimationLibrary_wduih")
+}
+blend_times = [&"Blur_in", &"Blur_out", 0.1, &"Blur_out", &"Blur_out", 0.1]
+
+[node name="User" type="Control" parent="UserPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="UserHead" type="ColorRect" parent="UserPage/User"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.0
+offset_top = 49.0
+offset_right = 43.0
+offset_bottom = 161.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="UserBody" type="ColorRect" parent="UserPage/User"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_top = 161.0
+offset_right = 70.0
+offset_bottom = 202.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="DefaultPfp" type="TextureRect" parent="UserPage/User"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 15.0
+offset_right = 100.0
+offset_bottom = 215.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("8_6km2q")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UserPage/User"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 209.0
+offset_right = 50.0
+offset_bottom = 240.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Username"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NativeConfirmationDialog" type="NativeConfirmationDialog" parent="UserPage"]
+
+[connection signal="config_saved" from="Content/ScrollContainer/ServicesBar/ContentServices" to="Control/ServiceContent" method="_on_content_services_config_saved"]
+[connection signal="request_changes" from="Content/ScrollContainer/ServicesBar/ContentServices" to="Control/ServiceContent" method="_on_content_services_request_changes"]
+[connection signal="service_chosen" from="Content/ScrollContainer/ServicesBar/ContentServices" to="Control/ServiceContent" method="_on_content_services_service_chosen"]
+[connection signal="pressed" from="Content/ServiceBar" to="Control/ServiceContent" method="_on_service_bar_pressed"]
+[connection signal="search" from="Content/ServiceBar" to="Content/ScrollContainer/ServicesBar/ContentServices" method="_on_service_bar_search"]
+[connection signal="search_end" from="Content/ServiceBar" to="UserPage/UserBanner" method="_on_service_bar_search_end"]
+[connection signal="search_start" from="Content/ServiceBar" to="UserPage/UserBanner" method="_on_service_bar_search_start"]
+[connection signal="delete_service" from="Control/ServiceContent" to="Content/ScrollContainer/ServicesBar/ContentServices" method="_on_service_content_delete_service"]
+[connection signal="edit_service" from="Control/ServiceContent" to="Content/ScrollContainer/ServicesBar/ContentServices" method="_on_service_content_edit_service"]
+[connection signal="submit_changes" from="Control/ServiceContent" to="Content/ScrollContainer/ServicesBar/ContentServices" method="_on_service_content_submit_changes"]
+[connection signal="mouse_entered" from="UserPage/UserBanner" to="UserPage/UserBanner" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UserPage/UserBanner" to="UserPage/UserBanner" method="_on_mouse_exited"]
+[connection signal="pressed" from="UserPage/UserBanner" to="UserPage/UserBanner" method="_on_pressed"]
+[connection signal="pressed" from="UserPage/Content/Button" to="UserPage/UserBanner" method="_on_button_pressed"]
+[connection signal="pressed" from="UserPage/Content/Button2" to="UserPage/UserBanner" method="_on_button_2_pressed"]
+[connection signal="pressed" from="UserPage/Content/Button3" to="UserPage/UserBanner" method="_on_button_3_pressed"]
+[connection signal="confirmed" from="UserPage/NativeConfirmationDialog" to="UserPage/UserBanner" method="_on_native_confirmation_dialog_confirmed"]
