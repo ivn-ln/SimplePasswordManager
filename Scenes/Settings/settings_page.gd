@@ -8,6 +8,8 @@ extends Control
 
 @onready var color_picker = $Tabs/General/ColorPicker
 
+@onready var option_autoresize = $Tabs/General/OptionButton
+
 @onready var bg = $Background
 
 @onready var tab_bg = $TabBackground
@@ -24,9 +26,9 @@ func _ready():
 		bg.visible = false
 		tab_bg.visible = false
 	if(!Globals.main_color==Color.WHITE):
-		option_color_theme.switch.emit_signal("toggled", true)
 		option_color_theme.switch.button_pressed =true
 		color_picker.color = Globals.main_color
+	option_autoresize.switch.button_pressed = Globals.autoresize
 	tab_bg.self_modulate = Globals.main_color
 	bg.self_modulate = Globals.main_color
 
@@ -41,7 +43,7 @@ func _on_button_pressed():
 		var settings_config = FileAccess.open(settings_file_path, FileAccess.WRITE)
 		settings_config.close()
 	var settings_config = FileAccess.open(settings_file_path, FileAccess.WRITE)
-	var store_array = [Globals.dark_theme ,Globals.main_color]
+	var store_array = [Globals.dark_theme ,Globals.main_color, Globals.autoresize]
 	settings_config.store_var(store_array)
 	settings_config.close()
 	get_tree().change_scene_to_file("res://Scenes/MainPage/MainPage.tscn")
@@ -63,8 +65,10 @@ func _on_dark_theme_button_toggled(button_pressed):
 func _on_color_theme_button_toggled(button_pressed):
 	if(button_pressed):
 		color_picker.visible = true
+		Globals.move_nodes($Tabs/General/OptionColorTheme, 25, $Tabs/General)
 	else:
 		color_picker.visible = false
+		Globals.move_nodes($Tabs/General/OptionColorTheme, -25, $Tabs/General)
 		RenderingServer.set_default_clear_color(Color.DIM_GRAY)
 		Globals.main_color = Color.WHITE
 		bg.self_modulate = Color.WHITE
@@ -73,8 +77,8 @@ func _on_color_theme_button_toggled(button_pressed):
 
 
 func _on_color_picker_color_changed(color):
-	if(Globals.dark_theme):
-		color.s = min(color.s, 0.5)
+	##if(Globals.dark_theme):
+	#	color.s = min(color.s, 0.5)
 	Globals.main_color = color
 	bg.self_modulate = color
 	tab_bg.self_modulate = color
@@ -102,3 +106,6 @@ func _on_native_confirmation_dialog_confirmed():
 		get_tree().change_scene_to_file("res://Scenes/Auth/auth_scene.tscn")
 	else:
 		print("Error, could not find user data")
+
+func _on_optin_autoresize_button_toggled(button_pressed):
+	Globals.autoresize = button_pressed

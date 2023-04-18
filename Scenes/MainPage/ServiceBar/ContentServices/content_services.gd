@@ -202,3 +202,7 @@ func _on_service_bar_search(_search_text):
 				service.position.y = service.id*50
 				$NewServiceButton.position.y+=50
 				prev_search_text = null
+
+
+func _on_min_size_button_pressed():
+	size.x=0

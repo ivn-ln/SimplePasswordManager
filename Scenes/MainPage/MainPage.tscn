@@ -433,9 +433,21 @@ mouse_filter = 2
 
 [node name="ServiceContent" parent="Control" instance=ExtResource("2_llvt2")]
 layout_mode = 1
+anchors_preset = -1
 offset_left = 0.0
 offset_bottom = 0.0
 mouse_filter = 2
+
+[node name="MinSizeButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 11.0
+offset_right = 238.0
+offset_bottom = 65.0
+tooltip_text = "Hide services"
+toggle_mode = true
+text = ">
+>"
 
 [node name="UserPage" type="Control" parent="."]
 layout_mode = 1
@@ -669,6 +681,7 @@ vertical_alignment = 1
 [connection signal="delete_service" from="Control/ServiceContent" to="Content/ScrollContainer/ServicesBar/ContentServices" method="_on_service_content_delete_service"]
 [connection signal="edit_service" from="Control/ServiceContent" to="Content/ScrollContainer/ServicesBar/ContentServices" method="_on_service_content_edit_service"]
 [connection signal="submit_changes" from="Control/ServiceContent" to="Content/ScrollContainer/ServicesBar/ContentServices" method="_on_service_content_submit_changes"]
+[connection signal="toggled" from="MinSizeButton" to="." method="_on_min_size_button_toggled"]
 [connection signal="mouse_entered" from="UserPage/UserBanner" to="UserPage/UserBanner" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UserPage/UserBanner" to="UserPage/UserBanner" method="_on_mouse_exited"]
 [connection signal="pressed" from="UserPage/UserBanner" to="UserPage/UserBanner" method="_on_pressed"]

@@ -24,6 +24,10 @@ config/icon="res://Assets/icon.svg"
 
 Globals="*res://globals.tscn"
 
+[display]
+
+window/handheld/orientation=1
+
 [input]
 
 ui_edit={
@@ -40,4 +44,5 @@ ui_find={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 1)

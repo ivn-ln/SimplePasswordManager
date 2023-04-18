@@ -12,11 +12,20 @@ func _ready():
 		$RememberMeCheckBox.button_pressed = should_remember
 		var default_color = default_settings_vars[1]
 		var default_login = default_settings_vars[0]
+		var main_color = default_settings_vars[3]
+		var dark_theme = default_settings_vars[4]
+		Globals.main_color = main_color
+		Globals.dark_theme = dark_theme
 		if(should_remember):
 			$Password.grab_focus()
 		$PFPBody.color = default_color
 		$PFPHead.color = default_color
 		$Login.text = default_login
+		if(Globals.dark_theme):
+			$Background.visible = true
+		if(Globals.main_color!=Color.WHITE):
+			RenderingServer.set_default_clear_color(Globals.main_color)
+			$Background.self_modulate = Globals.main_color
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,21 +57,23 @@ func _on_login_button_pressed():
 	var user_password = user_data_array [2]
 	config.close()
 	if(inputed_password.sha256_text()==user_password):
-		check_remember_me(user_login, user_color)
-		get_tree().change_scene_to_file("res://Scenes/MainPage/MainPage.tscn")
 		Globals.current_user = user_login
 		Globals.current_color = user_color
 		Globals.current_password = inputed_password
 		Globals.current_user_folder = OS.get_user_data_dir() + "/" + user_login
+		check_remember_me(user_login, user_color)
+		get_tree().change_scene_to_file("res://Scenes/MainPage/MainPage.tscn")
 	else:
 		password_reject()
 
 func check_remember_me(login, color):
-	var store_vars = ["", Color.WHITE, false]
+	print(Globals.main_color, Globals.dark_theme)
+	var store_vars = ["", Color.WHITE, false, Color.WHITE, false]
 	if($RememberMeCheckBox.button_pressed):
-		store_vars = [login, color, true]
+		store_vars = [login, color, true, Globals.main_color, Globals.dark_theme]
 	var default_settings = FileAccess.open(OS.get_user_data_dir()+"/default_settings.cfg", FileAccess.WRITE)
 	default_settings.store_var(store_vars)
+	default_settings.close()
 
 func password_reject():
 	$Password.clear()

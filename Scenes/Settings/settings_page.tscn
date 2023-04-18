@@ -49,10 +49,10 @@ layout_mode = 2
 [node name="ColorPicker" type="ColorPicker" parent="Tabs/General"]
 visible = false
 layout_mode = 1
-offset_left = 612.0
-offset_top = 216.0
-offset_right = 686.0
-offset_bottom = 539.0
+offset_left = 852.0
+offset_top = 336.0
+offset_right = 806.0
+offset_bottom = 659.0
 scale = Vector2(0.5, 0.5)
 alignment = 1
 edit_alpha = false
@@ -81,6 +81,17 @@ text = "Color theme"
 
 [node name="CheckButton" parent="Tabs/General/OptionColorTheme" index="0"]
 disabled = true
+
+[node name="OptionButton" parent="Tabs/General" instance=ExtResource("2_fogls")]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 115.0
+offset_right = 259.0
+offset_bottom = 141.0
+text = "Automatically hide service bar"
+
+[node name="CheckButton" parent="Tabs/General/OptionButton" index="0"]
+tooltip_text = "Creates a button"
 
 [node name="Account" type="Control" parent="Tabs"]
 visible = false
@@ -131,8 +142,10 @@ text_overrun_behavior = 1
 [connection signal="color_changed" from="Tabs/General/ColorPicker" to="." method="_on_color_picker_color_changed"]
 [connection signal="toggled" from="Tabs/General/OptionDarkTheme/CheckButton" to="." method="_on_dark_theme_button_toggled"]
 [connection signal="toggled" from="Tabs/General/OptionColorTheme/CheckButton" to="." method="_on_color_theme_button_toggled"]
+[connection signal="toggled" from="Tabs/General/OptionButton/CheckButton" to="." method="_on_optin_autoresize_button_toggled"]
 [connection signal="pressed" from="Tabs/Account/DeleteAccountButton" to="." method="_on_delete_account_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 
 [editable path="Tabs/General/OptionDarkTheme"]
 [editable path="Tabs/General/OptionColorTheme"]
+[editable path="Tabs/General/OptionButton"]

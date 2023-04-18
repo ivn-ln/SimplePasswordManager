@@ -7,7 +7,11 @@ var from_run = false
 func _ready():
 	DisplayServer.window_set_min_size(Vector2i(576, 648))
 	$Greeting.text ="Hello, " + OS.get_environment("USERNAME") + ", please enter login and password to create local account"
-	
+	if(Globals.dark_theme):
+			$Background.visible = true
+	if(Globals.main_color!=Color.WHITE):
+		RenderingServer.set_default_clear_color(Globals.main_color)
+		$Background.self_modulate = Globals.main_color
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
