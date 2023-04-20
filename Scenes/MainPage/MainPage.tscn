@@ -533,6 +533,7 @@ offset_bottom = -7.20002
 rotation = 0.785398
 
 [node name="DefaultPfp" type="TextureRect" parent="UserPage/UserBanner"]
+self_modulate = Color(0.207843, 0.207843, 0.207843, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -545,7 +546,6 @@ offset_right = 15.0357
 offset_bottom = -8.90107
 texture = ExtResource("8_6km2q")
 expand_mode = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Content" type="Control" parent="UserPage"]
 visible = false
@@ -640,6 +640,7 @@ mouse_filter = 2
 
 [node name="DefaultPfp" type="TextureRect" parent="UserPage/User"]
 modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0.207843, 0.207843, 0.207843, 1)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

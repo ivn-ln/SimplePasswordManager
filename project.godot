@@ -26,6 +26,7 @@ Globals="*res://globals.tscn"
 
 [display]
 
+window/subwindows/embed_subwindows=false
 window/handheld/orientation=1
 
 [input]

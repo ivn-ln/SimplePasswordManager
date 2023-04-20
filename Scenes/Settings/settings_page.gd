@@ -1,5 +1,11 @@
 extends Control
 
+@onready var user_label = $Tabs/Account/Label
+
+@onready var user_body = $Tabs/Account/Label/UserImage/PFPBody
+
+@onready var user_head = $Tabs/Account/Label/UserImage/PFPHead
+
 @onready var settings_file_path = Globals.current_user_folder + "/settings.cfg"
 
 @onready var option_dark_theme = $Tabs/General/OptionDarkTheme
@@ -14,8 +20,19 @@ extends Control
 
 @onready var tab_bg = $TabBackground
 
+@onready var auth_window = $Tabs/Account/Window
+
+@onready var user_color_picker=  $Tabs/Account/ChangeColorButton/ColorPickerUser
+
+var is_authorized = false
+
+var request_color_change = false
+
+var request_password_change = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	user_color_picker.position = Vector2i(244, -16)
 	option_color_theme.disabled = false
 	$Tabs/General/ColorPicker.position = Vector2i(180,0)
 	if(Globals.dark_theme):
@@ -31,6 +48,9 @@ func _ready():
 	option_autoresize.switch.button_pressed = Globals.autoresize
 	tab_bg.self_modulate = Globals.main_color
 	bg.self_modulate = Globals.main_color
+	user_label.text = "You're currently logged in as " + Globals.current_user
+	user_body.self_modulate = Globals.current_color
+	user_head.self_modulate = Globals.current_color
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,6 +59,12 @@ func _process(delta):
 
 
 func _on_button_pressed():
+	var user_config = OS.get_user_data_dir() + "/" + Globals.current_user + "/user.cfg"
+	if(FileAccess.file_exists(user_config)):
+		var stored_vars = [Globals.current_user, Globals.current_color, Globals.current_password.sha256_text()]
+		var user_config_stream = FileAccess.open_encrypted_with_pass(user_config, FileAccess.WRITE, Globals.password_phrase)
+		user_config_stream.store_var(stored_vars)
+		user_config_stream.close()
 	if(!FileAccess.file_exists(settings_file_path)):
 		var settings_config = FileAccess.open(settings_file_path, FileAccess.WRITE)
 		settings_config.close()
@@ -109,3 +135,67 @@ func _on_native_confirmation_dialog_confirmed():
 
 func _on_optin_autoresize_button_toggled(button_pressed):
 	Globals.autoresize = button_pressed
+
+
+func _on_change_color_button_pressed():
+	if(!is_authorized):
+		auth_window.show()
+		request_color_change =true
+		return
+	user_color_picker.visible = true
+
+
+func _on_change_password_button_2_pressed():
+	if(!is_authorized):
+		auth_window.show()
+		request_password_change = true
+		return
+	$Tabs/Account/ChangePasswordButton2/LineEdit.visible = true
+
+
+func _on_color_picker_user_color_changed(color):
+	Globals.current_color = color
+	user_body.self_modulate = color
+	user_head.self_modulate = color
+
+
+func _on_auth_sub_user_authorized():
+	is_authorized = true
+	if(request_color_change):
+		request_color_change = false
+		user_color_picker.visible = true
+	if(request_password_change):
+		request_password_change = false
+		$Tabs/Account/ChangePasswordButton2/LineEdit.visible = true
+
+
+func _on_window_close_requested():
+	$Tabs/Account/Window.hide()
+
+
+func _on_change_visibility_button_pressed():
+	if($Tabs/Account/ChangePasswordButton2/LineEdit.secret == false):
+		$Tabs/Account/ChangePasswordButton2/LineEdit.secret = true
+	else:
+		$Tabs/Account/ChangePasswordButton2/LineEdit.secret = false
+
+
+func _on_change_visibility_button_focus_exited():
+	$Tabs/Account/ChangePasswordButton2/LineEdit.secret = true
+	$Tabs/Account/ChangePasswordButton2/LineEdit/ChangeVisibilityButton.button_pressed = false
+
+
+func _on_change_password_confirm_pressed():
+	$Tabs/Account/ChangePasswordButton2/LineEdit.visible = false
+	Globals.current_password = $Tabs/Account/ChangePasswordButton2/LineEdit.text
+
+
+func _on_line_edit_text_submitted(new_text):
+	_on_change_password_confirm_pressed()
+
+
+func _on_line_edit_text_changed(new_text):
+	if(new_text!=""):
+		$Tabs/Account/ChangePasswordButton2/LineEdit/Button.disabled = false
+	else:
+		$Tabs/Account/ChangePasswordButton2/LineEdit/Button.disabled = true

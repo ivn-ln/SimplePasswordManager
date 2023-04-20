@@ -67,7 +67,7 @@ func _on_login_button_pressed():
 		password_reject()
 
 func check_remember_me(login, color):
-	print(Globals.main_color, Globals.dark_theme)
+	#print(Globals.main_color, Globals.dark_theme)
 	var store_vars = ["", Color.WHITE, false, Color.WHITE, false]
 	if($RememberMeCheckBox.button_pressed):
 		store_vars = [login, color, true, Globals.main_color, Globals.dark_theme]

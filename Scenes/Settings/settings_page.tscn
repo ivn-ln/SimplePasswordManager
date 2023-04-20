@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfjfuw6wyryem"]
+[gd_scene load_steps=8 format=3 uid="uid://cfjfuw6wyryem"]
 
 [ext_resource type="Script" path="res://Scenes/Settings/settings_page.gd" id="1_bin2c"]
 [ext_resource type="PackedScene" uid="uid://c1elbstqwdf4s" path="res://Scenes/OptionButton/option_button.tscn" id="2_fogls"]
+[ext_resource type="Texture2D" uid="uid://cohw37qj0a5oh" path="res://Assets/default_pfp.webp" id="3_8iw8p"]
+[ext_resource type="PackedScene" uid="uid://bbcqfi825i5x1" path="res://Scenes/AuthSubwindow/auth_sub.tscn" id="4_0yken"]
+[ext_resource type="StyleBox" uid="uid://dyhjt06puyome" path="res://Styles/ButtonPressedGreen/button_pressed_green.tres" id="4_yfsu5"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_iyhxx"]
 action = &"ui_cancel"
@@ -49,10 +52,10 @@ layout_mode = 2
 [node name="ColorPicker" type="ColorPicker" parent="Tabs/General"]
 visible = false
 layout_mode = 1
-offset_left = 852.0
-offset_top = 336.0
-offset_right = 806.0
-offset_bottom = 659.0
+offset_left = 1380.0
+offset_top = 600.0
+offset_right = 1070.0
+offset_bottom = 923.0
 scale = Vector2(0.5, 0.5)
 alignment = 1
 edit_alpha = false
@@ -97,33 +100,178 @@ tooltip_text = "Creates a button"
 visible = false
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Tabs/Account"]
+[node name="Label" type="Label" parent="Tabs/Account"]
 layout_mode = 0
 offset_left = 25.0
 offset_top = 25.0
-offset_right = 33.0
-offset_bottom = 50.0
-text = "Change user color"
+offset_right = 65.0
+offset_bottom = 48.0
+text = "You're currently logged in as username"
+
+[node name="UserImage" type="Control" parent="Tabs/Account/Label"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = -5.0
+offset_right = 62.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+
+[node name="PFPHead" type="ColorRect" parent="Tabs/Account/Label/UserImage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -36.0
+offset_right = 23.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PFPBody" type="ColorRect" parent="Tabs/Account/Label/UserImage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = 19.5
+offset_right = 35.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PFPBackground" type="TextureRect" parent="Tabs/Account/Label/UserImage"]
+self_modulate = Color(0.133333, 0.133333, 0.133333, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -54.0
+offset_right = 50.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8iw8p")
+expand_mode = 1
+
+[node name="ChangeColorButton" type="Button" parent="Tabs/Account"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 65.0
+offset_right = 200.0
+offset_bottom = 96.0
+text = "Change account color"
+
+[node name="ColorPickerUser" type="ColorPicker" parent="Tabs/Account/ChangeColorButton"]
+visible = false
+layout_mode = 0
+offset_left = 388.004
+offset_top = 55.7411
+offset_right = 606.004
+offset_bottom = 378.741
+scale = Vector2(0.5, 0.5)
+alignment = 1
+edit_alpha = false
+picker_shape = 2
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="ChangePasswordButton2" type="Button" parent="Tabs/Account"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 113.0
+offset_right = 240.0
+offset_bottom = 144.0
+text = "Change account password"
+
+[node name="LineEdit" type="LineEdit" parent="Tabs/Account/ChangePasswordButton2"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 20.2344
+offset_top = -15.5
+offset_right = 240.0
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+placeholder_text = "Input new password here"
+max_length = 25
+secret = true
+expand_to_text_length = true
+
+[node name="Button" type="Button" parent="Tabs/Account/ChangePasswordButton2/LineEdit"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -13.5
+offset_right = 34.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+disabled = true
+text = "✔️ "
+text_overrun_behavior = 1
+
+[node name="ChangeVisibilityButton" type="Button" parent="Tabs/Account/ChangePasswordButton2/LineEdit"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 42.0
+offset_top = -14.0
+offset_right = 67.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+theme_override_styles/pressed = ExtResource("4_yfsu5")
+toggle_mode = true
+text = "👁️ "
+text_overrun_behavior = 1
 
 [node name="DeleteAccountButton" type="Button" parent="Tabs/Account"]
 layout_mode = 0
 offset_left = 25.0
-offset_top = 75.0
+offset_top = 163.0
 offset_right = 150.0
-offset_bottom = 106.0
+offset_bottom = 194.0
 text = "Delete account"
 
-[node name="Header" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -39.0
-offset_right = 39.0
-offset_bottom = 31.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 20
-text = "Settings"
+[node name="Window" type="Window" parent="Tabs/Account"]
+title = "Authentification required"
+position = Vector2i(140, 97)
+size = Vector2i(500, 200)
+visible = false
+
+[node name="AuthSub" parent="Tabs/Account/Window" instance=ExtResource("4_0yken")]
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -143,7 +291,18 @@ text_overrun_behavior = 1
 [connection signal="toggled" from="Tabs/General/OptionDarkTheme/CheckButton" to="." method="_on_dark_theme_button_toggled"]
 [connection signal="toggled" from="Tabs/General/OptionColorTheme/CheckButton" to="." method="_on_color_theme_button_toggled"]
 [connection signal="toggled" from="Tabs/General/OptionButton/CheckButton" to="." method="_on_optin_autoresize_button_toggled"]
+[connection signal="pressed" from="Tabs/Account/ChangeColorButton" to="." method="_on_change_color_button_pressed"]
+[connection signal="color_changed" from="Tabs/Account/ChangeColorButton/ColorPickerUser" to="." method="_on_color_picker_user_color_changed"]
+[connection signal="pressed" from="Tabs/Account/ChangePasswordButton2" to="." method="_on_change_password_button_2_pressed"]
+[connection signal="text_changed" from="Tabs/Account/ChangePasswordButton2/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="Tabs/Account/ChangePasswordButton2/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="Tabs/Account/ChangePasswordButton2/LineEdit/Button" to="." method="_on_change_password_confirm_pressed"]
+[connection signal="focus_exited" from="Tabs/Account/ChangePasswordButton2/LineEdit/ChangeVisibilityButton" to="." method="_on_change_visibility_button_focus_exited"]
+[connection signal="pressed" from="Tabs/Account/ChangePasswordButton2/LineEdit/ChangeVisibilityButton" to="." method="_on_change_visibility_button_pressed"]
 [connection signal="pressed" from="Tabs/Account/DeleteAccountButton" to="." method="_on_delete_account_button_pressed"]
+[connection signal="about_to_popup" from="Tabs/Account/Window" to="Tabs/Account/Window/AuthSub" method="_on_window_about_to_popup"]
+[connection signal="close_requested" from="Tabs/Account/Window" to="." method="_on_window_close_requested"]
+[connection signal="user_authorized" from="Tabs/Account/Window/AuthSub" to="." method="_on_auth_sub_user_authorized"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 
 [editable path="Tabs/General/OptionDarkTheme"]
