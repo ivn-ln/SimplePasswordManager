@@ -43,7 +43,7 @@ func _ready():
 	get_parent().connect("submit_changes", Callable(self, "_on_submit_changes"))
 	connect("config_saved", Callable(get_parent(), "_on_config_saved"))
 	if(FileAccess.file_exists(password_cfg_location)):
-		passwords_array = FileAccess.open(password_cfg_location, FileAccess.READ).get_var()
+		passwords_array = FileAccess.open_encrypted_with_pass(password_cfg_location, FileAccess.READ, Globals.password_phrase).get_var()
 
 
 
@@ -58,7 +58,7 @@ func config_save():
 	service_config.store_var(storable_vars)
 	service_config.close()
 	var password_config = FileAccess
-	password_config = password_config.open(password_cfg_location, FileAccess.WRITE)
+	password_config = password_config.open_encrypted_with_pass(password_cfg_location, FileAccess.WRITE, Globals.password_phrase)
 	password_config.store_var(passwords_array)
 	password_config.close()
 

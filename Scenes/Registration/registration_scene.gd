@@ -37,7 +37,7 @@ func _on_login_button_pressed():
 		if(!DirAccess.dir_exists_absolute(config_folder)):
 			DirAccess.make_dir_absolute(config_folder)
 		if(!FileAccess.file_exists(config_path)):
-			var config = FileAccess.open_encrypted_with_pass(config_path, FileAccess.WRITE, Globals.password_phrase)
+			var config = FileAccess.open_encrypted_with_pass(config_path, FileAccess.WRITE, inputed_password)
 			var login = $Login.text
 			var password = $Password.text.sha256_text()
 			var store_vars = [login, profile_color, password]

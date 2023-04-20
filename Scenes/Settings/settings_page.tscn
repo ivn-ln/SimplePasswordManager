@@ -47,15 +47,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="General" type="Control" parent="Tabs"]
+visible = false
 layout_mode = 2
 
 [node name="ColorPicker" type="ColorPicker" parent="Tabs/General"]
 visible = false
 layout_mode = 1
-offset_left = 1380.0
-offset_top = 600.0
-offset_right = 1070.0
-offset_bottom = 923.0
+offset_left = 1524.0
+offset_top = 672.0
+offset_right = 1142.0
+offset_bottom = 995.0
 scale = Vector2(0.5, 0.5)
 alignment = 1
 edit_alpha = false
@@ -95,6 +96,29 @@ text = "Automatically hide service bar"
 
 [node name="CheckButton" parent="Tabs/General/OptionButton" index="0"]
 tooltip_text = "Creates a button"
+
+[node name="Export and import" type="Control" parent="Tabs"]
+layout_mode = 2
+
+[node name="ImportButton" type="Button" parent="Tabs/Export and import"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 152.0
+offset_bottom = 56.0
+text = "Import account from file 📭"
+
+[node name="ExportButton" type="Button" parent="Tabs/Export and import"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 75.0
+offset_right = 178.0
+offset_bottom = 106.0
+text = "Export account to file 📩"
+
+[node name="NativeFileDialog" type="NativeFileDialog" parent="Tabs/Export and import"]
+title = "Choose export file"
+file_mode = 2
 
 [node name="Account" type="Control" parent="Tabs"]
 visible = false
@@ -179,10 +203,10 @@ text = "Change account color"
 [node name="ColorPickerUser" type="ColorPicker" parent="Tabs/Account/ChangeColorButton"]
 visible = false
 layout_mode = 0
-offset_left = 388.004
-offset_top = 55.7411
-offset_right = 606.004
-offset_bottom = 378.741
+offset_left = 532.004
+offset_top = 127.741
+offset_right = 678.004
+offset_bottom = 450.741
 scale = Vector2(0.5, 0.5)
 alignment = 1
 edit_alpha = false
@@ -291,6 +315,9 @@ text_overrun_behavior = 1
 [connection signal="toggled" from="Tabs/General/OptionDarkTheme/CheckButton" to="." method="_on_dark_theme_button_toggled"]
 [connection signal="toggled" from="Tabs/General/OptionColorTheme/CheckButton" to="." method="_on_color_theme_button_toggled"]
 [connection signal="toggled" from="Tabs/General/OptionButton/CheckButton" to="." method="_on_optin_autoresize_button_toggled"]
+[connection signal="pressed" from="Tabs/Export and import/ImportButton" to="." method="_on_import_button_pressed"]
+[connection signal="pressed" from="Tabs/Export and import/ExportButton" to="." method="_on_export_button_pressed"]
+[connection signal="dir_selected" from="Tabs/Export and import/NativeFileDialog" to="." method="_on_native_file_dialog_dir_selected"]
 [connection signal="pressed" from="Tabs/Account/ChangeColorButton" to="." method="_on_change_color_button_pressed"]
 [connection signal="color_changed" from="Tabs/Account/ChangeColorButton/ColorPickerUser" to="." method="_on_color_picker_user_color_changed"]
 [connection signal="pressed" from="Tabs/Account/ChangePasswordButton2" to="." method="_on_change_password_button_2_pressed"]

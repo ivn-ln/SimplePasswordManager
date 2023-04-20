@@ -1,6 +1,6 @@
 extends Node
 
-const password_phrase = "u1l8X!F5WtTO5#3EyT9E@JBa"
+var password_phrase = "u1l8X!F5WtTO5#3EyT9E@JBa"
 
 var current_user = "Username"
 

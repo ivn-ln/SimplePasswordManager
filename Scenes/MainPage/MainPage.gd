@@ -10,6 +10,7 @@ var minmode = false
 func _ready():
 	if(OS.get_name()=="Android"):
 		$UserPage/Panel.visible = false
+		DisplayServer.window_set_size(Vector2i(648, 1152))
 	if(autoresize):
 		$MinSizeButton.disabled = true
 		$MinSizeButton.tooltip_text = "Disable automatical service bar hiding in settings to enable this button"

@@ -50,7 +50,10 @@ func _on_login_button_pressed():
 	if(!FileAccess.file_exists(config_path)):
 		login_reject()
 		return
-	config = FileAccess.open_encrypted_with_pass(config_path, FileAccess.READ, Globals.password_phrase)
+	config = FileAccess.open_encrypted_with_pass(config_path, FileAccess.READ, inputed_password)
+	if(config==null):
+		password_reject()
+		return
 	var user_data_array = config.get_var()
 	var user_login = user_data_array [0]
 	var user_color = user_data_array [1]
@@ -61,6 +64,7 @@ func _on_login_button_pressed():
 		Globals.current_color = user_color
 		Globals.current_password = inputed_password
 		Globals.current_user_folder = OS.get_user_data_dir() + "/" + user_login
+		Globals.password_phrase = inputed_password
 		check_remember_me(user_login, user_color)
 		get_tree().change_scene_to_file("res://Scenes/MainPage/MainPage.tscn")
 	else:

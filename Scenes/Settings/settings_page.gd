@@ -188,6 +188,7 @@ func _on_change_visibility_button_focus_exited():
 func _on_change_password_confirm_pressed():
 	$Tabs/Account/ChangePasswordButton2/LineEdit.visible = false
 	Globals.current_password = $Tabs/Account/ChangePasswordButton2/LineEdit.text
+	Globals.password_phrase =  $Tabs/Account/ChangePasswordButton2/LineEdit.text
 
 
 func _on_line_edit_text_submitted(new_text):
@@ -199,3 +200,20 @@ func _on_line_edit_text_changed(new_text):
 		$Tabs/Account/ChangePasswordButton2/LineEdit/Button.disabled = false
 	else:
 		$Tabs/Account/ChangePasswordButton2/LineEdit/Button.disabled = true
+
+
+func _on_import_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_export_button_pressed():
+	$"Tabs/Export and import/NativeFileDialog".show()
+
+
+
+func _on_native_file_dialog_dir_selected(dir):
+	var file_path = dir + "/"+ Globals.current_user + ".spm"
+	if(!DirAccess.dir_exists_absolute(Globals.current_user_folder+"/Services/")):
+		print("Error, dir not exists")
+		return
+	#DirAccess.copy_absolute(Globals.current_user_folder+"/Services/",  dir)
