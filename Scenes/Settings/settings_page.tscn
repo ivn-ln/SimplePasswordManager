@@ -53,10 +53,10 @@ layout_mode = 2
 [node name="ColorPicker" type="ColorPicker" parent="Tabs/General"]
 visible = false
 layout_mode = 1
-offset_left = 1524.0
-offset_top = 672.0
-offset_right = 1142.0
-offset_bottom = 995.0
+offset_left = 1652.0
+offset_top = 736.0
+offset_right = 1206.0
+offset_bottom = 1059.0
 scale = Vector2(0.5, 0.5)
 alignment = 1
 edit_alpha = false
@@ -117,7 +117,7 @@ offset_bottom = 106.0
 text = "Export account to file 📩"
 
 [node name="NativeFileDialog" type="NativeFileDialog" parent="Tabs/Export and import"]
-title = "Choose export file"
+title = "Open a Directory"
 file_mode = 2
 
 [node name="Account" type="Control" parent="Tabs"]
@@ -203,10 +203,10 @@ text = "Change account color"
 [node name="ColorPickerUser" type="ColorPicker" parent="Tabs/Account/ChangeColorButton"]
 visible = false
 layout_mode = 0
-offset_left = 532.004
-offset_top = 127.741
-offset_right = 678.004
-offset_bottom = 450.741
+offset_left = 660.004
+offset_top = 191.741
+offset_right = 742.004
+offset_bottom = 514.741
 scale = Vector2(0.5, 0.5)
 alignment = 1
 edit_alpha = false

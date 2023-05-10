@@ -231,6 +231,7 @@ offset_top = 76.0
 offset_right = 155.0
 offset_bottom = 101.0
 grow_horizontal = 2
+tooltip_text = "Hide"
 theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = ExtResource("2_3kdk4")
 toggle_mode = true
@@ -263,10 +264,22 @@ offset_left = 123.0
 offset_top = 155.0
 offset_right = 148.0
 offset_bottom = 180.0
+tooltip_text = "Hide"
 theme_override_font_sizes/font_size = 12
 theme_override_styles/pressed = ExtResource("2_3kdk4")
 toggle_mode = true
 text = "👁️ "
+text_overrun_behavior = 1
+
+[node name="ImportFromWeb" type="Button" parent="."]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 155.0
+offset_right = 183.0
+offset_bottom = 180.0
+tooltip_text = "Import passwords from SPM browser extension"
+theme_override_font_sizes/font_size = 12
+text = "🌍 "
 text_overrun_behavior = 1
 
 [node name="PasswordsHeader" type="Label" parent="."]
@@ -333,6 +346,11 @@ libraries = {
 "": SubResource("AnimationLibrary_2vofd")
 }
 
+[node name="PickWeb" type="NativeFileDialog" parent="."]
+title = "Open File(s)"
+file_mode = 1
+filters = PackedStringArray("")
+
 [connection signal="pressed" from="Header" to="." method="_on_header_pressed"]
 [connection signal="resized" from="Header" to="." method="_on_header_resized"]
 [connection signal="pressed" from="Header/EditService" to="." method="_on_edit_service_pressed"]
@@ -344,5 +362,7 @@ libraries = {
 [connection signal="pressed" from="Header/WebAddress/ButtonDiscard" to="." method="_on_button_discard_pressed"]
 [connection signal="pressed" from="HideDescription" to="." method="_on_hide_description_pressed"]
 [connection signal="pressed" from="HidePasswords" to="." method="_on_hide_passwords_pressed"]
+[connection signal="pressed" from="ImportFromWeb" to="." method="_on_import_from_web_pressed"]
 [connection signal="pressed" from="ScrollContainer/PasswordContent/NewPassword" to="." method="_on_new_password_pressed"]
 [connection signal="confirmed" from="NativeConfirmationDialog" to="." method="_on_native_confirmation_dialog_confirmed"]
+[connection signal="files_selected" from="PickWeb" to="." method="_on_pick_web_files_selected"]

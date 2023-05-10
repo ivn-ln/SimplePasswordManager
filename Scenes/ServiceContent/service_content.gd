@@ -304,3 +304,32 @@ func _on_button_accept_pressed():
 	$Header/WebAddress.text = ""
 	reset_header()
 	$Header/OpenWeb.button_pressed = false
+
+
+func _on_import_from_web_pressed():
+	$PickWeb.show()
+
+
+func _on_pick_web_files_selected(paths):
+	if(current_service_id==-1):
+		return
+	for cfg in paths:
+		if(!cfg.ends_with('.spm')):
+			print('invalid file extension')
+			return
+		var file_str = FileAccess.get_file_as_string(cfg)
+		var name_char = file_str.find('name:')
+		var login_char = file_str.find('login:')
+		var password_char = file_str.find('password:')
+		if(login_char!=-1 and password_char!=-1):
+			var stored_name = 'Password ' + str(lines_amount)
+			if(stored_name!=''):
+				stored_name = file_str.substr(name_char+5, login_char-name_char-5).replace(';', '')
+			var stored_login = file_str.substr(login_char+6, password_char-login_char-6).replace(';', '')
+			var stored_password = file_str.substr(password_char+9).replace(';', '')
+			var new_pass = create_new_password(lines_amount, true)
+			new_pass.header_text = stored_name
+			new_pass.login_text = stored_login
+			new_pass.password_text = stored_password
+			new_pass._on_password_header_text_changed(stored_name)
+			lines_amount+=1
